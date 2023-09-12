@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PortsShop.Infra.Data.ModelsConfiguration;
 
-internal class UserConfiguration : IEntityTypeConfiguration<User>
+public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {

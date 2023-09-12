@@ -10,6 +10,7 @@ public class Person
     public string? Identity { get; private set; }
     public string? Passport { get; private set; }
 
+    public Person(){}
     public Person(DateTime birthday, string? cpf = null, string? identity = null, string? passport = null)
     {
         ValidateDomain(birthday, cpf, identity, passport);

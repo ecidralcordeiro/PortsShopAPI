@@ -9,17 +9,13 @@ using System.Threading.Tasks;
 
 namespace PortsShop.Infra.Data.ModelsConfiguration;
 
-public class PersonConfiguration : IEntityTypeConfiguration<Person>
+public class BranchConfiguration
 {
-    public void Configure(EntityTypeBuilder<Person> builder)
+    public void Configure(EntityTypeBuilder<Branch> builder)
     {
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id).ValueGeneratedOnAdd().UseIdentityColumn();
-        builder.Property(x => x.CPF).HasMaxLength(11).IsRequired(false);
-        builder.Property(x => x.Passport).HasMaxLength(30).IsRequired(false);
-        builder.Property(x => x.Identity).HasMaxLength(30).IsRequired(false);
-        builder.Property(x => x.Birthday).IsRequired();
+        builder.Property(x => x.Name).HasMaxLength(50).IsRequired(true);
 
     }
 }
-

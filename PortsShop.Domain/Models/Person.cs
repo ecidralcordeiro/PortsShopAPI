@@ -4,7 +4,7 @@ namespace PortsShop.Domain.Models;
 
 public class Person
 {
-    public long Id { get; private set; }
+    public int Id { get; private set; }
     public DateTime Birthday { get; private set; }
     public string? CPF { get; private set; }
     public string? Identity { get; private set; }

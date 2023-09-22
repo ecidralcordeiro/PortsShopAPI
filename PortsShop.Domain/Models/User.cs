@@ -5,19 +5,23 @@ namespace PortsShop.Domain.Models
 {
     public class User
     {
-        public long Id { get; private set; }
-        public long? IdPerson { get; private set; }
-        public long? IdStore { get; private set; }
+        public int Id { get; private set; }
+        public int? IdPerson { get; private set; }
+        public int? IdStore { get; private set; }
+        public int? idAdress { get; private set; }
         public string Email { get; private set; }
         public string Password { get; private set; }
         public Person Person { get; private set; }
+        public Address Address { get; private set; }
+        public ICollection<Cart> Carts { get;  set; }
+        public ICollection<Purchase> Purchases { get;  set; }
 
         public User(string email, string password)
         {
             ValidateDomain(email, password);
         }
 
-        public void Update(long id, string email, string password)
+        public void Update(int id, string email, string password)
         {
             Id = id;
             ValidateDomain(email, password);
@@ -30,12 +34,12 @@ namespace PortsShop.Domain.Models
             Email = email;
             Password = password;
         }
-        public void AssociatePerson(long personId)
+        public void AssociatePerson(int personId)
         {
             IdPerson = personId;
             IdStore = null;
         }
-        public void AssociateStore(long storeId)
+        public void AssociateStore(int storeId)
         {
             IdStore = storeId;
             IdPerson = null;

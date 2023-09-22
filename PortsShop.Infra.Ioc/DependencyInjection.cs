@@ -11,6 +11,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Extensions.Options;
 
 namespace PortsShop.Infra.Ioc;
 public static class DependencyInjection
@@ -39,14 +40,20 @@ public static class DependencyInjection
             };
         });
 
+        //Cors
+    
+
         // Configurar o AutoMapper
         services.AddAutoMapper(typeof(UserMappingProfile));
+        services.AddAutoMapper(typeof(CategoryMappingProfile));
 
         // Repositories
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
 
         // Services
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<ICategoryService, CategoryService>();
 
         return services;
     }

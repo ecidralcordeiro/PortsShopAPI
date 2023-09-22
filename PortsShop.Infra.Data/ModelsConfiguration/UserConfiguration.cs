@@ -14,13 +14,22 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.HasKey(x => x.Id);
+        builder.Property(x => x.Id).ValueGeneratedOnAdd().UseIdentityColumn();
         builder.Property(x => x.Email).IsRequired();
         builder.Property(x => x.Password).IsRequired();
 
         builder.HasOne(x => x.Person)
                   .WithOne()
                   .HasForeignKey<Person>(x => x.Id)
-                  .IsRequired(false);
+                  .IsRequired(false)
+                  .OnDelete(DeleteBehavior.NoAction);
+
+
+        builder.HasOne(x => x.Address)
+                  .WithOne()
+                  .HasForeignKey<Address>(x => x.Id)
+                  .IsRequired(false)
+                  .OnDelete(DeleteBehavior.NoAction);
     }
 
 }

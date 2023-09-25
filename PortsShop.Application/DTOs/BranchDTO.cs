@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace PortsShop.Application.DTOs;
 
-public class CategoryDTO
+public class BranchDTO
 {
     [IgnoreDataMember]
     public int Id { get; private set; }

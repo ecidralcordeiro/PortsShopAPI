@@ -52,11 +52,13 @@ public static class DependencyInjection
         // Repositories
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IBranchRepository, BranchRepository>();
 
         // Services
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IAuthenticate, AuthenticateService>();
+        services.AddScoped<IBranchService, BranchService>();
 
         return services;
     }

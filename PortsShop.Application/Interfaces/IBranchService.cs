@@ -5,9 +5,9 @@ namespace PortsShop.Application.Interfaces;
 
 public interface IBranchService
 {
-    Task<CategoryDTO> CreateAsync(CategoryDTO categoryDTO);
-    Task<CategoryDTO> UpdateAsync(CategoryDTO categoryDTO);
-    Task<CategoryDTO> DeleteAsync(int id);
-    Task<CategoryDTO> GetByIdAsync(int id);
-    Task<IEnumerable<CategoryDTO>> GetAllAsync();
+    Task<BranchDTO> CreateAsync(BranchDTO branchDTO);
+    Task<BranchDTO> UpdateAsync(BranchDTO branch);
+    Task<BranchDTO> DeleteAsync(int id);
+    Task<BranchDTO> GetByIdAsync(int id);
+    Task<IEnumerable<BranchDTO>> GetAllAsync();
 }

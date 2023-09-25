@@ -15,6 +15,22 @@ public class PurchaseRepository : IPurchaseRepository
     {
         _context = context;
     }
+
+    public Task<Purchase> AddPrice(Price id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Purchase> AddSKU(SKU id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Purchase> AddUser(User id)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<Purchase> CreateAsync(Purchase purchase)
     {
         throw new NotImplementedException();

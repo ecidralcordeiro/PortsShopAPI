@@ -26,9 +26,10 @@ public class BranchRepository : IBranchRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Branch>> GetAllAsync()
+    public async Task<IEnumerable<Branch>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var branchs = await _context.Branch.ToListAsync();
+        return branchs;
     }
 
     public Task<Branch> GetByIdAsync(int id)

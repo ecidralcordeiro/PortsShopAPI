@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Options;
+using PortsShop.Domain.Account;
+using PortsShop.Infra.Data.Identity;
 
 namespace PortsShop.Infra.Ioc;
 public static class DependencyInjection
@@ -54,6 +56,7 @@ public static class DependencyInjection
         // Services
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<IAuthenticate, AuthenticateService>();
 
         return services;
     }

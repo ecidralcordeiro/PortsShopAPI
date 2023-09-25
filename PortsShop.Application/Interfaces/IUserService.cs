@@ -9,5 +9,6 @@ public interface IUserService
     Task<UserDTO> UpdateAsync(UserDTO userDto);
     Task<UserDTO> DeleteAsync(int id);
     Task<UserDTO> GetByIdAsync(int id);
+    Task<UserDTO> GetUserByLoginAndPassword(string login, string password);
     Task<IEnumerable<UserDTO>> GetAllAsync();
 }

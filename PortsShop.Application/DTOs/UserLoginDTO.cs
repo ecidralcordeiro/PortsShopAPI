@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+
+using System.ComponentModel.DataAnnotations;
 
 namespace PortsShop.Application.DTOs;
 
-public class UserDTO
+public class UserLoginDTO
 {
-    public int Id { get; set; }
 
     [Required]
     public string Email { get; set; }

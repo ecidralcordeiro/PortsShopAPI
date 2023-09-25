@@ -5,6 +5,10 @@ namespace PortsShop.Infra.Data.Context;
 
 public class ApplicationDbContext : DbContext
 {
+    public ApplicationDbContext()
+    {
+    }
+
     public ApplicationDbContext(DbContextOptions options) : base(options)
     {
         

@@ -1,4 +1,6 @@
-﻿using PortsShop.Domain.Interfaces;
+﻿using iSAGAAPI.Services;
+using Microsoft.EntityFrameworkCore;
+using PortsShop.Domain.Interfaces;
 using PortsShop.Domain.Models;
 using PortsShop.Infra.Data.Context;
 
@@ -12,9 +14,12 @@ public class UserRepository : IUserRepository
     {
         _context = context;
     }
-    public Task<User> CreateAsync(User user)
+    public async Task<User> CreateAsync(User user)
     {
-        throw new NotImplementedException();
+        user.Password = CriptografyService.criptografyPassword(user.Password);
+        _context.User.Add(user);
+        await _context.SaveChangesAsync();
+        return user;
     }
 
     public Task<User> DeleteAsync(int id)
@@ -22,18 +27,28 @@ public class UserRepository : IUserRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<User>> GetAllAsync()
+    public async Task<IEnumerable<User>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var users = await _context.User.ToListAsync();
+        return users;
     }
 
-    public Task<User> GetByIdAsync(int id)
+    public async Task<User> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var user = await _context.User.FindAsync(id);
+        return user;
     }
 
-    public Task<User> UpdateAsync(User user)
+    public async Task<User> UpdateAsync(User user)
     {
-        throw new NotImplementedException();
+        _context.User.Update(user);
+        await _context.SaveChangesAsync();
+        return user;
+    }
+
+    public async Task<User> GetUserByLoginAndPassword(string email, string password)
+    {
+        var user = await _context.User.FirstOrDefaultAsync(x=> x.Email.ToLower() == email.ToLower() && x.Password == password);
+        return user;
     }
 }

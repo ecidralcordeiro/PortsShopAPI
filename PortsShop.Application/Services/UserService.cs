@@ -3,6 +3,8 @@ using PortsShop.Application.DTOs;
 using PortsShop.Application.Interfaces;
 using PortsShop.Domain.Interfaces;
 using PortsShop.Domain.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace PortsShop.Application.Services;
 
@@ -19,7 +21,7 @@ public class UserService : IUserService
     public async Task<UserDTO> CreateAsync(UserDTO userDTO)
     {
         var user = _mapper.Map<User>(userDTO);
-        var createdUser = await _userRepository.UpdateAsync(user);
+        var createdUser = await _userRepository.CreateAsync(user);
         return _mapper.Map<UserDTO>(createdUser);
     }
 
@@ -41,10 +43,27 @@ public class UserService : IUserService
         return _mapper.Map<UserDTO>(user);
     }
 
+    public async Task<UserDTO> GetUserByLoginAndPassword(string login, string password)
+    {
+        string passwordHash = criptografyPassword(password);
+        var user =  await _userRepository.GetUserByLoginAndPassword(login, passwordHash);
+        return _mapper.Map<UserDTO>(user);
+    }
+
     public async Task<UserDTO> UpdateAsync(UserDTO userDTO)
     {
         var user = _mapper.Map<User>(userDTO);
         var updatedUser = await _userRepository.UpdateAsync(user);
         return _mapper.Map<UserDTO>(updatedUser);
+    }
+
+    public static string criptografyPassword(string password)
+    {
+        var md5 = MD5.Create();
+        byte[] inputBytes = Encoding.ASCII.GetBytes(password);
+        byte[] hashBytes = md5.ComputeHash(inputBytes);
+        string passwordEncripto = Convert.ToHexString(hashBytes);
+
+        return passwordEncripto;
     }
 }

@@ -10,7 +10,7 @@ namespace PortsShop.Domain.Models
         public int? IdStore { get; private set; }
         public int? idAdress { get; private set; }
         public string Email { get; private set; }
-        public string Password { get; private set; }
+        public string Password { get;  set; }
         public Person Person { get; private set; }
         public Address Address { get; private set; }
         public ICollection<Cart> Carts { get;  set; }
